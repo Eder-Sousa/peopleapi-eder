@@ -1,15 +1,22 @@
 package com.edersousa.personapi.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.edersousa.personapi.dto.MessageResponseDTO;
+import com.edersousa.personapi.entity.Person;
+import com.edersousa.personapi.service.PersonService;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/peoples")
+@AllArgsConstructor
 public class PersonController {
 
-    @GetMapping
-    public String getBook(){
-        return "API Test!";
+    private PersonService service;
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public MessageResponseDTO create(@RequestBody Person person){
+        return service.create(person);
     }
 }

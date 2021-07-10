@@ -1,7 +1,9 @@
 package com.edersousa.personapi.service;
 
-import com.edersousa.personapi.dto.MessageResponseDTO;
+import com.edersousa.personapi.dto.request.PersonDTO;
+import com.edersousa.personapi.dto.responose.MessageResponseDTO;
 import com.edersousa.personapi.entity.Person;
+import com.edersousa.personapi.mapper.PersonMapper;
 import com.edersousa.personapi.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,8 +14,13 @@ public class PersonService {
 
     private PersonRepository repository;
 
-    public MessageResponseDTO create(Person person){
-        Person savedPerson = repository.save(person);
+    private final PersonMapper personMapper = PersonMapper.INSTANCE;
+
+    public MessageResponseDTO create(PersonDTO personDTO){
+        Person personToSave = personMapper.toModel(personDTO);
+
+        Person savedPerson = repository.save(personToSave);
+
         return MessageResponseDTO
                 .builder()
                 .message("Created person with id " + savedPerson.getId())

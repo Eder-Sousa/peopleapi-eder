@@ -1,4 +1,4 @@
-package com.edersousa.personapi.dto;
+package com.edersousa.personapi.dto.responose;
 
 import lombok.Builder;
 import lombok.Data;

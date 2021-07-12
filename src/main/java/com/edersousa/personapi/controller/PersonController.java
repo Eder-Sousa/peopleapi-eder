@@ -5,6 +5,7 @@ import com.edersousa.personapi.dto.responose.MessageResponseDTO;
 import com.edersousa.personapi.exception.PersonNotFoundException;
 import com.edersousa.personapi.service.PersonService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
